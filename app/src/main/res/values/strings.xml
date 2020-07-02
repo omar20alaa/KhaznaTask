@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Khazna Task</string>
+    <string name="loading">Loading</string>
+    <string name="khazna">Khazna Task</string>
+    <string name="posts">Posts</string>
+    <string name="post_id">Post Id</string>
+    <string name="userId">User Id</string>
+    <string name="post_title">Title</string>
+    <string name="post_body">Body</string>
+
+</resources>
