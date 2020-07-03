@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 29
@@ -15,6 +16,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     compileOptions {
@@ -39,6 +45,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    def hilt_jetpack = "1.0.0-alpha01"
 
     // TODO adding paging
     implementation "android.arch.paging:runtime:1.0.1"
@@ -82,5 +90,16 @@ dependencies {
 
     // TODO sdp
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    // TODO Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // TODO  Hilt - View Model
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack"
+    kapt "androidx.hilt:hilt-compiler:$hilt_jetpack"
+
+    // TODO Activity Ktx for by viewModels()
+    implementation "androidx.activity:activity-ktx:1.1.0"
 
 }

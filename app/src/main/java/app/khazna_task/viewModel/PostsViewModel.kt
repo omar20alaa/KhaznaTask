@@ -1,6 +1,7 @@
 package com.app.khazna_task.viewModel
 
 import android.app.Application
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.app.khazna_task.global.GlobalFunctions.showLog
@@ -11,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PostsViewModel(application: Application) : AndroidViewModel(application) {
+class PostsViewModel @ViewModelInject constructor(application: Application) : AndroidViewModel(application) {
 
     private val postsRespository: PostsRespository
     val allPosts: LiveData<List<Posts>>

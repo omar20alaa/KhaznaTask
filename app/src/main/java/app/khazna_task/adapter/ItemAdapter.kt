@@ -19,6 +19,7 @@ import com.app.khazna_task.view.PostDetails
 import com.google.gson.Gson
 
 class ItemAdapter(private val mCtx: Context) : PagedListAdapter<Posts, ItemViewHolder>(DIFF_CALLBACK) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(mCtx).inflate(R.layout.post_item, parent, false)
         return ItemViewHolder(view)

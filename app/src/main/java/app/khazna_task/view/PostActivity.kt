@@ -2,9 +2,9 @@ package com.app.khazna_task.view
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,16 +18,21 @@ import com.app.khazna_task.global.GlobalFunctions.showSuccessToast
 import com.app.khazna_task.model.Posts
 import app.khazna_task.paging.ItemViewModel
 import com.app.khazna_task.viewModel.PostsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_post.*
 import java.util.*
 
+
+@AndroidEntryPoint
 class PostActivity : AppCompatActivity() {
 
     // todo vars
-    private var postsViewModel: PostsViewModel? = null
+    private val postsViewModel: PostsViewModel by viewModels()
     private var postsLists: List<Posts>? = null
     private var postAdapter: PostAdapter? = null
     private var layoutManager: LinearLayoutManager? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post)
@@ -64,7 +69,6 @@ class PostActivity : AppCompatActivity() {
     private fun initViewModel() {
         postsLists = ArrayList()
         postAdapter = PostAdapter(this, postsLists!!)
-        postsViewModel = ViewModelProvider(this).get(PostsViewModel::class.java)
         postsViewModel!!.allPosts.observe(this, Observer { postsList ->
             postAdapter!!.getAllPosts(postsList)
             recyclerview!!.adapter = postAdapter

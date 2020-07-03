@@ -7,8 +7,9 @@ import com.app.khazna_task.dao.PostDao
 import com.app.khazna_task.database.PostsDatabase
 import com.app.khazna_task.database.PostsDatabase.Companion.getInstance
 import com.app.khazna_task.model.Posts
+import javax.inject.Inject
 
-class PostsRespository(application: Application?) {
+class PostsRespository @Inject constructor(application: Application?) {
 
     private val database: PostsDatabase?
     val allPosts: LiveData<List<Posts>>
@@ -16,9 +17,10 @@ class PostsRespository(application: Application?) {
         InsertAsynTask(database).execute(postsList)
     }
 
-    internal class InsertAsynTask(postsDatabase: PostsDatabase?) : AsyncTask<List<Posts>, Void, Void>() {
+    internal class InsertAsynTask(postsDatabase: PostsDatabase?) :
+        AsyncTask<List<Posts>, Void, Void>() {
         private val postDao: PostDao
-        protected override fun doInBackground(vararg lists: List<Posts>): Void? {
+        override fun doInBackground(vararg lists: List<Posts>): Void? {
             postDao.insert(lists[0])
             return null
         }
